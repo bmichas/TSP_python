@@ -84,6 +84,9 @@ def count_distance(cities_location):
                 pass
             else:
                 start = cities_location[i]
+                print(start)
+                print(10*'a')
+                print(location)
                 dist = np.linalg.norm(start - location)
                 if simetrical:
                     pass
@@ -135,6 +138,7 @@ def main():
     travel_cost = count_distance(cities_location)
     travel_cost = existing_rouds(travel_cost, possible_roads)
     city_roads = array_toDicts(travel_cost, n_city)
+    # print(city_roads)
     best_path, cost = greed(city_roads, start_point)
     shortest_path, min_cost = real_cost(best_path, travel_cost, cost)
     print("Best path:", shortest_path)
