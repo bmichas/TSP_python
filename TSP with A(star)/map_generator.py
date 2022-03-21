@@ -45,9 +45,13 @@ def aStar(city_map, visited=None, stack=None, cost=None, previous=None):
         visited = [start_point]
         cost = 0
         stack = city_map[start_point].neigbours
-    print(visited)
-    print(stack)
-    print(cost)
+
+    minimum = float('inf')
+    for i in stack:
+        if minimum > stack[i]:
+            minimum = stack[i]
+            minimum_id = i
+    print(minimum_id, minimum)
 
 
 def count_cost(city_map):
