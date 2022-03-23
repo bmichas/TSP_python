@@ -21,9 +21,14 @@ def real_cost(best_path, travel_cost, cost):
         if start_point == row[0] and end == row[1]:
             cost += row[2]
             best_path.append(start_point)
+            if len(best_path) == n_city+1:
+                return best_path, cost
+            else:
+                print('trasa nie jest poprawna')
+                return best_path, cost
+        else:
+            print('trasa nie jest poprawna')
             return best_path, cost
-    print('trasa nie jest poprawna')
-    return best_path, cost
 
 
 def greed(city_roads, start_point, visited=None, cost=None):
@@ -84,9 +89,6 @@ def count_distance(cities_location):
                 pass
             else:
                 start = cities_location[i]
-                print(start)
-                print(10*'a')
-                print(location)
                 dist = np.linalg.norm(start - location)
                 if simetrical:
                     pass
