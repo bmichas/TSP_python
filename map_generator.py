@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 n_city = 4
 random.seed(244828)
 start_point = 0
-simetrical = False
+symmetrical = False
 roads = 0.8
 possible_roads = [0]*round(n_city*(n_city - 1) * (1 - roads)) + \
     [1]*round(n_city*(n_city - 1) * roads)
@@ -58,7 +58,7 @@ def count_cost(city_map):
         for neighbour in start_city.neigbours:
             end_node = city_map[neighbour].location
             dist = np.linalg.norm(start_node - end_node)
-            if simetrical:
+            if symmetrical:
                 pass
             else:
                 if start_node[2] > end_node[2]:
