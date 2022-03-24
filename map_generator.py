@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 - BFS 0/1
 - Greed 1/2
 - A* 0/2
-- AOC 0/1
+- AOC 0/1   
 """
 
 
