@@ -14,7 +14,8 @@ import matplotlib.pyplot as plt
 
 
 n_city = 4
-
+random.seed(244828)
+start_point = 0
 simetrical = False
 roads = 0.8
 possible_roads = [0]*round(n_city*(n_city - 1) * (1 - roads)) + \
@@ -97,7 +98,8 @@ def main():
     for city in city_map:
         city.show_node()
 
-    shortest_path = [0, 1, 2, 3, 0]
+    shortest_path = [x for x in range(n_city)]
+    shortest_path.append(start_point)
     plot_results([city_map[int(i)].location for i in shortest_path])
 
 
