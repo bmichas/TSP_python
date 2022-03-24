@@ -2,6 +2,17 @@ import random
 import numpy as np
 import matplotlib.pyplot as plt
 
+"""
+!TO DO!
+- Genrator 1/1
+- DFS 0/1
+- BFS 0/1
+- Greed 1/2
+- A* 0/2
+- AOC 0/1
+"""
+
+
 n_city = 4
 
 simetrical = False
