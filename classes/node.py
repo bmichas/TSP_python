@@ -8,10 +8,10 @@ class Node:
     def __init__(self, _id):
         self._id = _id
         self.location = None
-        self.neighbours = []
+        self.neighbors = []
 
     def show_node(self):
-        print(self._id, self.location, self.neighbours)
+        print(self._id, self.location, self.neighbors)
 
     def get_location(self):
         x = random.randint(-100, 100)
@@ -19,14 +19,14 @@ class Node:
         z = random.randint(0, 50)
         self.location = np.asarray([x, y, z])
 
-    def get_neighbours(self, _id, n_city, possible_roads):
+    def get_neighbors(self, _id, n_city, possible_roads):
         cities = [x for x in range(n_city)]
         cities.remove(_id)
-        for neigbour in cities:
+        for neighbor in cities:
             if possible_roads[0] == 0:
-                cities.remove(neigbour)
+                cities.remove(neighbor)
                 possible_roads.remove(possible_roads[0])
             else:
                 possible_roads.remove(possible_roads[0])
-        cities_dic = {neighbours: None for neighbours in cities}
-        self.neighbours = cities_dic
+        cities_dic = {neighbors: None for neighbors in cities}
+        self.neighbors = cities_dic

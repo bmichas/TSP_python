@@ -1,5 +1,3 @@
-# from ..classes.node import Node
-
 from classes.node import Node
 
 def getList(dict):
@@ -7,21 +5,21 @@ def getList(dict):
 
 
 def dfs_search(city_map: list[Node], start_point, visited=None, alternative=None):
-    print(city_map.neighbours)
+    print(city_map[0].neighbors)
 
     if visited == None:
         visited = [start_point]
 
-    neighbours = city_map[start_point].neighbours
-    neighbours = getList(neighbours)
-    alternative = neighbours
-    if len(neighbours) == 0:
+    neighbors = city_map[start_point].neighbors
+    neighbors = getList(neighbors)
+    alternative = neighbors
+    if len(neighbors) == 0:
         print('brak somsiadow')
 
-    start_point = neighbours[0]
+    start_point = neighbors[0]
     visited.append(start_point)
     alternative.remove(start_point)
     print(start_point)
-    print(neighbours)
+    print(neighbors)
     print(visited)
     print(alternative)

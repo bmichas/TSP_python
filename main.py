@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-# from tsp_with_dfs_bfs.dfs_bfs import dfs_search
+from tsp_with_dfs_bfs.dfs_bfs import dfs_search
 from classes.node import Node
 from global_parameters import *
 from tsp_with_greed.greed import greed1, greed2, real_cost
@@ -19,8 +19,8 @@ from tsp_with_greed.greed import greed1, greed2, real_cost
 def count_cost(city_map):
     for start_city in city_map:
         start_node = start_city.location
-        for neighbour in start_city.neighbours:
-            end_node = city_map[neighbour].location
+        for neighbor in start_city.neighbors:
+            end_node = city_map[neighbor].location
             dist = np.linalg.norm(start_node - end_node)
             if SYMMETRICAL:
                 pass
@@ -31,7 +31,7 @@ def count_cost(city_map):
                     dist = dist*1.1
                 else:
                     dist = dist
-            start_city.neighbours[neighbour] = dist
+            start_city.neighbors[neighbor] = dist
     return city_map
 
 
@@ -58,7 +58,7 @@ def main():
     for city in range(N_CITY):
         node = Node(city)
         node.get_location()
-        node.get_neighbours(city, N_CITY, POSSIBLE_ROADS)
+        node.get_neighbors(city, N_CITY, POSSIBLE_ROADS)
         city_map.append(node)
 
     city_map = count_cost(city_map)
@@ -66,14 +66,14 @@ def main():
     city_roads = {}
     for city in city_map:
         city.show_node()
-        city_roads[city._id] = city.neighbours
+        city_roads[city._id] = city.neighbors
 
     """
     ########### DFS && BFS ########### 
     """
 
-    # shortest_path_dfs = dfs_search(city_roads, START_POINT)
-    # shortest_path_bfs = bfs_serach()
+    shortest_path_dfs = dfs_search(city_map, START_POINT)
+    # shortest_path_bfs = bfs_search()
 
     """
     ############# GREED ##############
