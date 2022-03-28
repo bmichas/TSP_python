@@ -8,10 +8,10 @@ class Node:
     def __init__(self, _id):
         self._id = _id
         self.location = None
-        self.neigbours = []
+        self.neighbours = []
 
     def show_node(self):
-        print(self._id, self.location, self.neigbours)
+        print(self._id, self.location, self.neighbours)
 
     def get_location(self):
         x = random.randint(-100, 100)
@@ -28,5 +28,5 @@ class Node:
                 possible_roads.remove(possible_roads[0])
             else:
                 possible_roads.remove(possible_roads[0])
-        cities_dic = {neighbour: None for neighbour in cities}
-        self.neigbours = cities_dic
+        cities_dic = {neighbours: None for neighbours in cities}
+        self.neighbours = cities_dic
