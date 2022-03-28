@@ -1,5 +1,6 @@
 # from ..classes.node import Node
 
+from classes.node import Node
 
 def getList(dict):
     return list(dict.keys())
