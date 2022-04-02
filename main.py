@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from tsp_with_dfs_bfs.dfs_bfs import dfs_search
+from tsp_with_dfs_bfs.dfs_bfs import dfs_search, bfs_search
 from classes.node import Node
 from global_parameters import *
 from tsp_with_greed.greed import greed1, greed2, real_cost
@@ -65,32 +65,33 @@ def main():
 
     city_roads = {}
     for city in city_map:
-        city.show_node()
+        # city.show_node()
         city_roads[city._id] = city.neighbors
 
     """
     ########### DFS && BFS ########### 
     """
 
-    shortest_path_dfs = dfs_search(city_map, START_POINT)
+    # shortest_path_dfs = dfs_search(city_map, START_POINT)
+    shortest_path_bfs = bfs_search(city_map, START_POINT, N_CITY)
     # shortest_path_bfs = bfs_search()
 
     """
     ############# GREED ##############
     """
 
-    print(city_roads)
-    shortest_path_greed1, cost_greed_1 = greed1(city_roads, START_POINT)
-    shortest_path_greed1, cost_greed_1 = real_cost(
-        shortest_path_greed1, city_roads, cost_greed_1, N_CITY)
-    shortest_path_greed2, cost_greed_2 = greed2(city_roads, START_POINT)
-    shortest_path_greed2, cost_greed_2 = real_cost(
-        shortest_path_greed2, city_roads, cost_greed_2, N_CITY)
+    # print(city_roads)
+    # shortest_path_greed1, cost_greed_1 = greed1(city_roads, START_POINT)
+    # shortest_path_greed1, cost_greed_1 = real_cost(
+    #     shortest_path_greed1, city_roads, cost_greed_1, N_CITY)
+    # shortest_path_greed2, cost_greed_2 = greed2(city_roads, START_POINT)
+    # shortest_path_greed2, cost_greed_2 = real_cost(
+    #     shortest_path_greed2, city_roads, cost_greed_2, N_CITY)
 
-    print(
-        f'Schortest path greed 1: {shortest_path_greed1}, Cost: {cost_greed_1}')
-    print(
-        f'Schortest path greed 2: {shortest_path_greed2}, Cost: {cost_greed_2}')
+    # print(
+    #     f'Schortest path greed 1: {shortest_path_greed1}, Cost: {cost_greed_1}')
+    # print(
+    #     f'Schortest path greed 2: {shortest_path_greed2}, Cost: {cost_greed_2}')
 
     """
     ############# Astar ##############
@@ -107,9 +108,9 @@ def main():
     """
     ############# Vis ##############
     """
-    shortest_path_greed1 = [x for x in range(N_CITY)]
-    shortest_path_greed1.append(START_POINT)
-    plot_results([city_map[int(i)].location for i in shortest_path_greed1])
+    # shortest_path_greed1 = [x for x in range(N_CITY)]
+    # shortest_path_greed1.append(START_POINT)
+    # plot_results([city_map[int(i)].location for i in shortest_path_greed1])
 
 
 if __name__ == "__main__":
