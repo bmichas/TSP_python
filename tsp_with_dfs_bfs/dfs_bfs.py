@@ -27,39 +27,36 @@ def dfs_search(city_map: list[Node], start_point, visited=None, alternative=None
     print(alternative)
 
 
-def bfs_search(city_map: list[Node], start_point, city_count, visited_lst=None, path_lst=None):
-    if visited_lst == None:
-        path_lst = list()
-        visited_lst = list()
-        for neighbor in city_map[start_point].neighbors:
-            lst = [start_point, neighbor]
-            path_lst.append(lst)
-            visited_lst.append(lst)
+def bfs_search(city_map: list[Node], start_point, city_count):
+    path_lst, visited_lst = list(), list()
+    for neighbor in city_map[start_point].neighbors:
+        lst = [start_point, neighbor]
+        path_lst.append(lst)
+        visited_lst.append(lst)
 
-    print('Path:', path_lst)
-    print('Visited:', visited_lst)
+    # print('Path:', path_lst)
+    # print('Visited:', visited_lst)
 
-    # tu jest cos nie tak nie idze dobrze po paths
-    # tak samo jest cos nie tak z lista visited
-    # ewaluacje pierwszej pętli powinny zostac tak jak są
-    # ale kolejna pętla powinna prawdopodomnie być względem listy path
-    for i in range(city_count - 1):
-        print('====')
-        path = path_lst[0]
-        visited = visited_lst[0]
-        start_point = path[-1]
-        for neighbor in city_map[start_point].neighbors:
-            if neighbor in visited:
-                print('jest ten somsiad')
-            else:
-                print('przed', path_lst)
-                new_path = copy(path)
-                new_path.append(neighbor)
-                path_lst.append(new_path)
-                visited_lst.append(new_path)
-                print('po', path_lst)
-        path_lst.pop(0)
-        visited_lst.pop(0)
+    for i in range(city_count - 2):
+        # print('====')
+        for j in range(len(path_lst)):
+            # print('----')
+            path = path_lst[0]
+            visited = visited_lst[0]
+            start_point = path[-1]
+            for neighbor in city_map[start_point].neighbors:
+                if neighbor in visited:
+                    # print('Already visited this city!')
+                    pass
+                else:
+                    # print('Before:', path_lst)
+                    new_path = copy(path)
+                    new_path.append(neighbor)
+                    path_lst.append(new_path)
+                    visited_lst.append(new_path)
+                    # print('After:', path_lst)
+            path_lst.pop(0)
+            visited_lst.pop(0)
 
     print('Path:', path_lst)
     print('Visited:', visited_lst)

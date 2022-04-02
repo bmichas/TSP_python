@@ -65,7 +65,7 @@ def main():
 
     city_roads = {}
     for city in city_map:
-        # city.show_node()
+        city.show_node()
         city_roads[city._id] = city.neighbors
 
     """
