@@ -9,7 +9,7 @@ from tsp_with_greed.greed import greed1, greed2, real_cost
 !TO DO!
 - Genrator 1/1
 - DFS 0/1
-- BFS 0/1
+- BFS 1/1
 - Greed 2/2
 - A* 0/2
 - AOC 0/1   
@@ -73,7 +73,8 @@ def main():
     """
 
     # shortest_path_dfs = dfs_search(city_map, START_POINT)
-    shortest_path_bfs = bfs_search(city_map, START_POINT, N_CITY)
+    shortest_path_bfs, min_cost_bfs = bfs_search(city_map, START_POINT, N_CITY)
+    print(shortest_path_bfs, min_cost_bfs)
     # shortest_path_bfs = bfs_search()
 
     """
