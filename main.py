@@ -72,9 +72,10 @@ def main():
     ########### DFS && BFS ########### 
     """
 
-    # shortest_path_dfs = dfs_search(city_map, START_POINT)
-    shortest_path_bfs, min_cost_bfs = bfs_search(city_map, START_POINT, N_CITY)
-    print(shortest_path_bfs, min_cost_bfs)
+    shortest_path_dfs = dfs_search(city_map, START_POINT, N_CITY)
+    print(shortest_path_dfs)
+    # shortest_path_bfs, min_cost_bfs = bfs_search(city_map, START_POINT, N_CITY)
+    # print(shortest_path_bfs, min_cost_bfs)
     # shortest_path_bfs = bfs_search()
 
     """
