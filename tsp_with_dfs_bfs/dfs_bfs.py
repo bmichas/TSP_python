@@ -1,6 +1,5 @@
 from copy import copy
-
-from numpy import kaiser
+from hashlib import new
 from classes.node import Node
 
 
@@ -8,7 +7,7 @@ def getList(dict):
     return list(dict.keys())
 
 
-def valid_path(path_lst, city_map: list[Node]):
+def validShortestPath(path_lst, city_map: list[Node]):
     valid_paths, travel_cost_lst = list(), list()
     for path in path_lst:
         start_point = path[-1]
@@ -29,45 +28,21 @@ def valid_path(path_lst, city_map: list[Node]):
     return valid_paths[min_cost_index], travel_cost_lst[min_cost_index]
 
 
-def dfs_search(city_map: list[Node], start_point, city_count, visited=None, path_lst=None):
-    # Działa tylko dla 4 miast z wieksza ioscia ma problemy....
+def dfs_search(city_map: list[Node], start_point, path=None, path_lst=list()):
+    if path is None:
+        path = [start_point]
 
-    if visited is None:
-        city_map_original = city_map.copy()
-        path_lst = []
+    if len(path) == len(city_map):
+        path_lst.append(path)
 
-    visited = []
-    if len(city_map[start_point].neighbors) == 0:
-        print("asdfasdfas", path_lst)
-        return 2
+    possible = getList(city_map[start_point].neighbors)
+    for i in possible:
+        if i not in path:
+            new_path = path.copy()
+            new_path.append(i)
+            dfs_search(city_map, i, new_path, path_lst)
 
-    possible = list((city_map[start_point].neighbors).keys())
-    city_map[start_point].neighbors.pop(possible[0])
-    path_f = [start_point, possible[0]]
-    alternative = list((city_map[path_f[-1]].neighbors).keys())
-    for city in alternative:
-        if city in path_f:
-            alternative.remove(city)
-
-    for city in alternative:
-        path = path_f.copy()
-        if city not in path:
-            path.append(city)
-        possible = list((city_map[path[-1]].neighbors).keys())
-        for k in range(city_count - 2):
-            for i in possible:
-                if i in path:
-                    visited.append(i)
-            for i in visited:
-                if i in possible:
-                    possible.remove(i)
-            if len(possible) != 0:
-                path.append(possible[0])
-        if len(path) == city_count:
-            path_lst.append(path)
-
-    print(path_lst)
-    dfs_search(city_map, start_point, city_count, visited, path_lst)
+    return path_lst
 
 
 def bfs_search(city_map: list[Node], start_point, city_count):
@@ -93,4 +68,4 @@ def bfs_search(city_map: list[Node], start_point, city_count):
             path_lst.pop(0)
             visited_lst.pop(0)
 
-    return valid_path(path_lst, city_map)
+    return path_lst

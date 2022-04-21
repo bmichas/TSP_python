@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from tsp_with_dfs_bfs.dfs_bfs import dfs_search, bfs_search
+from tsp_with_dfs_bfs.dfs_bfs import dfs_search, bfs_search, validShortestPath
 from classes.node import Node
 from global_parameters import *
 from tsp_with_greed.greed import greed1, greed2, real_cost
@@ -8,7 +8,7 @@ from tsp_with_greed.greed import greed1, greed2, real_cost
 """
 !TO DO!
 - Genrator 1/1
-- DFS 0/1
+- DFS 1/1
 - BFS 1/1
 - Greed 2/2
 - A* 0/2
@@ -65,35 +65,37 @@ def main():
 
     city_roads = {}
     for city in city_map:
-        city.show_node()
+        # city.show_node()
         city_roads[city._id] = city.neighbors
 
     """
     ########### DFS && BFS ########### 
     """
 
-    shortest_path_dfs = dfs_search(city_map, START_POINT, N_CITY)
-    print(shortest_path_dfs)
-    # shortest_path_bfs, min_cost_bfs = bfs_search(city_map, START_POINT, N_CITY)
-    # print(shortest_path_bfs, min_cost_bfs)
-    # shortest_path_bfs = bfs_search()
+    paths_dfs = dfs_search(city_map, START_POINT)
+    shortest_path_dfs, min_cost_dfs = validShortestPath(paths_dfs, city_map)
+    paths_bfs = bfs_search(city_map, START_POINT, N_CITY)
+    shortest_path_bfs, min_cost_bfs = validShortestPath(paths_bfs, city_map)
+    print(
+        f'Schortest path DFS: {shortest_path_dfs}, Cost: {min_cost_dfs}')
+    print(
+        f'Schortest path BFS: {shortest_path_bfs}, Cost: {min_cost_bfs}')
 
     """
     ############# GREED ##############
     """
 
-    # print(city_roads)
-    # shortest_path_greed1, cost_greed_1 = greed1(city_roads, START_POINT)
-    # shortest_path_greed1, cost_greed_1 = real_cost(
-    #     shortest_path_greed1, city_roads, cost_greed_1, N_CITY)
-    # shortest_path_greed2, cost_greed_2 = greed2(city_roads, START_POINT)
-    # shortest_path_greed2, cost_greed_2 = real_cost(
-    #     shortest_path_greed2, city_roads, cost_greed_2, N_CITY)
+    shortest_path_greed1, cost_greed_1 = greed1(city_roads, START_POINT)
+    shortest_path_greed1, cost_greed_1 = real_cost(
+        shortest_path_greed1, city_roads, cost_greed_1, N_CITY)
+    shortest_path_greed2, cost_greed_2 = greed2(city_roads, START_POINT)
+    shortest_path_greed2, cost_greed_2 = real_cost(
+        shortest_path_greed2, city_roads, cost_greed_2, N_CITY)
 
-    # print(
-    #     f'Schortest path greed 1: {shortest_path_greed1}, Cost: {cost_greed_1}')
-    # print(
-    #     f'Schortest path greed 2: {shortest_path_greed2}, Cost: {cost_greed_2}')
+    print(
+        f'Schortest path greed 1: {shortest_path_greed1}, Cost: {cost_greed_1}')
+    print(
+        f'Schortest path greed 2: {shortest_path_greed2}, Cost: {cost_greed_2}')
 
     """
     ############# Astar ##############

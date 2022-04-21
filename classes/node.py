@@ -8,7 +8,7 @@ class Node:
     def __init__(self, _id):
         self._id = _id
         self.location = None
-        self.neighbors = []
+        self.neighbors = None
 
     def show_node(self):
         print(self._id, self.location, self.neighbors)
