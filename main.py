@@ -99,10 +99,10 @@ def main():
     #     f'Schortest path greed 2: {shortest_path_greed2}, Cost: {cost_greed_2}')
 
     """
-    ############# aStar ##############
+    ############# aStar, HEURISTICS: MEAN, MIN ##############
     """
-    aStarInit = aStar(city_map, START_POINT)
-    aStarInit.getPath()
+    aStarInit = aStar(city_map, START_POINT, 'MIN')
+    aStarInit.get_path(START_POINT)
     """
     ############# AOC ##############
     """
