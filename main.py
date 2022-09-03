@@ -66,21 +66,21 @@ def main():
 
     city_roads = {}
     for city in city_map:
-        # city.show_node()
+        city.show_node()
         city_roads[city._id] = city.neighbors
 
     """
     ########### DFS && BFS ########### 
     """
 
-    # paths_dfs = dfs_search(city_map, START_POINT)
-    # shortest_path_dfs, min_cost_dfs = validShortestPath(paths_dfs, city_map)
-    # paths_bfs = bfs_search(city_map, START_POINT, N_CITY)
-    # shortest_path_bfs, min_cost_bfs = validShortestPath(paths_bfs, city_map)
-    # print(
-    #     f'Schortest path DFS: {shortest_path_dfs}, Cost: {min_cost_dfs}')
-    # print(
-    #     f'Schortest path BFS: {shortest_path_bfs}, Cost: {min_cost_bfs}')
+    paths_dfs = dfs_search(city_map, START_POINT)
+    shortest_path_dfs, min_cost_dfs = validShortestPath(paths_dfs, city_map)
+    paths_bfs = bfs_search(city_map, START_POINT, N_CITY)
+    shortest_path_bfs, min_cost_bfs = validShortestPath(paths_bfs, city_map)
+    print(
+        f'Schortest path DFS: {shortest_path_dfs}, Cost: {min_cost_dfs}')
+    print(
+        f'Schortest path BFS: {shortest_path_bfs}, Cost: {min_cost_bfs}')
 
     """
     ############# GREED ##############
@@ -100,9 +100,16 @@ def main():
 
     """
     ############# aStar, HEURISTICS: MEAN, MIN ##############
-    """
-    aStarInit = aStar(city_map, START_POINT, 'MIN')
-    aStarInit.get_path(START_POINT)
+    # """
+    aStar_min = aStar(city_map, START_POINT, 'MIN')
+    aStar_min.get_path(START_POINT)
+    aStar_mean = aStar(city_map, START_POINT, 'MEAN')
+    aStar_mean.get_path(START_POINT)
+    print(
+        f'Schortest path A*(min): {aStar_min.current_path}, Cost: {aStar_min.cost}')
+    print(
+        f'Schortest path A*(mean): {aStar_mean.current_path}, Cost: {aStar_mean.cost}')
+        
     """
     ############# AOC ##############
     """
