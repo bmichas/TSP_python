@@ -1,5 +1,6 @@
 import copy
 from classes.node import Node
+import sys
 
 
 class aStar:
@@ -41,7 +42,7 @@ class aStar:
         
 
     def get_path(self, start_point,path_to_remove = []):
-    
+        sys.setrecursionlimit(1950)
         if len(self.current_path) == len(self.city_map)+1:
             self.cost = self._cost(self.current_path)
             return 0

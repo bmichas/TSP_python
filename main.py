@@ -5,6 +5,9 @@ from classes.node import Node
 from global_parameters import *
 from tsp_with_greed.greed import greed1, greed2, real_cost
 from tsp_with_aStar.aStar import aStar
+from tsp_with_aoc.aoc import Aoc
+from timeit import default_timer as timer
+import sys
 
 """
 !TO DO!
@@ -12,7 +15,7 @@ from tsp_with_aStar.aStar import aStar
 - DFS 1/1
 - BFS 1/1
 - Greed 2/2
-- A* 0/2
+- A* 2/2
 - AOC 0/1   
 """
 
@@ -66,55 +69,78 @@ def main():
 
     city_roads = {}
     for city in city_map:
-        city.show_node()
+        # city.show_node()
         city_roads[city._id] = city.neighbors
 
     """
     ########### DFS && BFS ########### 
     """
+    # start = timer()
+    # paths_dfs = dfs_search(city_map, START_POINT)
+    # shortest_path_dfs, min_cost_dfs = validShortestPath(paths_dfs, city_map)
+    # end = timer()
+    # time_dfs = end - start
 
-    paths_dfs = dfs_search(city_map, START_POINT)
-    shortest_path_dfs, min_cost_dfs = validShortestPath(paths_dfs, city_map)
-    paths_bfs = bfs_search(city_map, START_POINT, N_CITY)
-    shortest_path_bfs, min_cost_bfs = validShortestPath(paths_bfs, city_map)
-    print(
-        f'Schortest path DFS: {shortest_path_dfs}, Cost: {min_cost_dfs}')
-    print(
-        f'Schortest path BFS: {shortest_path_bfs}, Cost: {min_cost_bfs}')
+    # start = timer()
+    # paths_bfs = bfs_search(city_map, START_POINT, N_CITY)
+    # shortest_path_bfs, min_cost_bfs = validShortestPath(paths_bfs, city_map)
+    # end = timer()
+    # time_bfs = end - start
+    
+    # print(
+    #     f'Schortest path DFS: {shortest_path_dfs}, Cost: {min_cost_dfs}, Execution time: {time_dfs}')
+    # print(
+    #     f'Schortest path BFS: {shortest_path_bfs}, Cost: {min_cost_bfs}, Execution time: {time_bfs}')
 
     """
     ############# GREED ##############
     """
-
+    # start = timer()
     # shortest_path_greed1, cost_greed_1 = greed1(city_roads, START_POINT)
     # shortest_path_greed1, cost_greed_1 = real_cost(
     #     shortest_path_greed1, city_roads, cost_greed_1, N_CITY)
+    # end = timer()
+    # time_greed1 = end - start
+
+    # start = timer()
     # shortest_path_greed2, cost_greed_2 = greed2(city_roads, START_POINT)
     # shortest_path_greed2, cost_greed_2 = real_cost(
     #     shortest_path_greed2, city_roads, cost_greed_2, N_CITY)
+    # end = timer()
+    # time_greed2 = end - start
+
 
     # print(
-    #     f'Schortest path greed 1: {shortest_path_greed1}, Cost: {cost_greed_1}')
+    #     f'Schortest path greed 1: {shortest_path_greed1}, Cost: {cost_greed_1}, Execution time: {time_greed1}')
     # print(
-    #     f'Schortest path greed 2: {shortest_path_greed2}, Cost: {cost_greed_2}')
+    #     f'Schortest path greed 2: {shortest_path_greed2}, Cost: {cost_greed_2}, Execution time: {time_greed2}')
 
     """
     ############# aStar, HEURISTICS: MEAN, MIN ##############
     # """
-    aStar_min = aStar(city_map, START_POINT, 'MIN')
-    aStar_min.get_path(START_POINT)
-    aStar_mean = aStar(city_map, START_POINT, 'MEAN')
-    aStar_mean.get_path(START_POINT)
-    print(
-        f'Schortest path A*(min): {aStar_min.current_path}, Cost: {aStar_min.cost}')
-    print(
-        f'Schortest path A*(mean): {aStar_mean.current_path}, Cost: {aStar_mean.cost}')
+    # start = timer()
+    # aStar_min = aStar(city_map, START_POINT, 'MIN')
+    # aStar_min.get_path(START_POINT)
+    # end = timer()
+    # time_aStar_min = end - start
+
+    # start = timer()
+    # aStar_mean = aStar(city_map, START_POINT, 'MEAN')
+    # aStar_mean.get_path(START_POINT)
+    # end = timer()
+    # time_aStar_mean = end - start
+
+    # print(
+    #     f'Schortest path A*(min): {aStar_min.current_path}, Cost: {aStar_min.cost}, Execution time: {time_aStar_min}')
+    # print(
+    #     f'Schortest path A*(mean): {aStar_mean.current_path}, Cost: {aStar_mean.cost}, Execution time: {time_aStar_mean}')
         
     """
     ############# AOC ##############
     """
 
-    # shortest_path_AOC = aoc()
+    shortest_path_AOC = Aoc(city_map, START_POINT, 10)
+    shortest_path_AOC.get_path(START_POINT)
 
     """
     ############# Vis ##############
