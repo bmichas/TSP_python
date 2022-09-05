@@ -3,18 +3,23 @@ from classes.node import Node
 
 class Aoc:
     def __init__(self, city_map: list[Node], start_point: int, ants: int) -> None:
-        self.city_map = city_map
+        self.city_map = self._get_city_map(city_map)
         self.start_point = start_point
         self.ants = ants
-        self.pheromon_map = self._gen_pheromon_map()
+        self.pheromon_map = self._gen_pheromon_map(city_map)
         self.possible_paths = []
         self.current_path = []
         
 
+    def _get_city_map(self, city_map):
+        new_city_map = []
+        for city in city_map:
+            new_city_map.append(city.neighbors)
+        return new_city_map
 
-    def _gen_pheromon_map(self):
+    def _gen_pheromon_map(self, city_map):
         pheronom_map = []
-        for city in self.city_map:
+        for city in city_map:
             pheromon_paths = {}
             for path in city.neighbors:
                 pheromon_paths[path] = 1 / city.neighbors[path]
@@ -29,8 +34,9 @@ class Aoc:
 
     def get_path(self, start_point, counter = 0):
         if counter == self.ants:
-            print('Koniec roju')
-            return 0 
+            print(self.pheromon_map)
+            print(self.city_map)
+            return 'Koniec roju'
 
         path = self.pheromon_map[self.start_point]
 

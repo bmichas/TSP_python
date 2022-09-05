@@ -140,8 +140,8 @@ def main():
     """
 
     shortest_path_AOC = Aoc(city_map, START_POINT, 10)
-    shortest_path_AOC.get_path(START_POINT)
-
+    test = shortest_path_AOC.get_path(START_POINT)
+    print(test)
     """
     ############# Vis ##############
     """
