@@ -3,7 +3,6 @@ import numpy as np
 
 random.seed(244828)
 
-
 class Node:
     def __init__(self, _id):
         self._id = _id

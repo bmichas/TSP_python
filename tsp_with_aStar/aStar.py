@@ -1,6 +1,7 @@
 import copy
 from classes.node import Node
 import sys
+sys.setrecursionlimit(10000)
 
 
 class aStar:
@@ -36,6 +37,7 @@ class aStar:
         cost = 0
         if len(path) == 1:
             return 0
+
         for i in range(len(path)-1):
             cost += self.city_map[path[i]].neighbors[path[i+1]]
         return cost
@@ -78,15 +80,3 @@ class aStar:
 
         new_start_point = self.current_path[-1]
         self.get_path(new_start_point, path_to_remove)
-
-
-
-
-    
-             
-                
-
-# 0 [-24  69  45] {1: 128.07224523681936, 2: 67.31374302473455, 3: 165.9347160783421}
-# 1 [-88 -56  22] {0: 156.53274417833478, 2: 102.27580359009652, 3: 50.30019880676418}
-# 2 [-89  57  10] {0: 82.27235258578668, 1: 125.00375994345131, 3: 173.8034809777986}
-# 3 [-99 -99  33] {0: 202.8090974290848, 1: 41.15470811462524, 2: 142.2028480727443}
